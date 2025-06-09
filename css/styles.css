@@ -1,0 +1,136 @@
+
+/* Reset and base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Georgia', serif;
+  overflow: visible;
+}
+
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.container-fluid.overlay {
+  background-image: url('images/shadow-glow.gif'); /* Replace with the actual URL of your GIF */
+  background-size: cover; /* This scales the background image to cover the entire element */
+  background-position: center; /* This centers the background image */
+  /* You might also want to add: */
+  background-repeat: no-repeat; /* Prevents the GIF from tiling */
+}
+
+/* Background image */
+.background {
+  background-image: url('../assets/images/treehouse-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* GIF layer - subtle animation under Jinwoo */
+.gif-layer {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  height: 80%;
+  opacity: .02;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Jinwoo overlay image */
+.overlay-image {
+  position: center;
+  top: 10%;
+  left: 10%;
+  height: 80%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Navigation bar */
+.navbar {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  z-index: 4;
+}
+nav a {
+  font-family: 'Just Another Hand',cursive;
+  font-size: 1.5rem;
+  color: chartreuse;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.navbar a {
+  color: #9d29c1;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 30px;
+  transition: all 0.3s ease;
+}
+
+.navbar, .navbar a, .navbar-brand, .nav-link {
+  font-family: 'Just Another Hand', cursive;
+}
+
+
+
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+  z-index: 4;
+}
+
+
+
+
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+
