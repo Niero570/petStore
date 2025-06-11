@@ -1,212 +1,130 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap" rel="stylesheet">
-  <title>PETS Collection</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-    }
-
-    .flip-card {
-      background-color: transparent;
-      width: 250px;
-      height: 300px;
-      perspective: 1000px;
-    }
-
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .flip-card-front images, .flip-card-back images {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .flip-card-back {
-      background-color: #fff;
-      color: #333;
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .flip-card-back h3, .flip-card-back p {
-      margin: 0.5rem 0;
-    }
-  </style>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap" rel="stylesheet">
+ <title>PETS Collection</title>
+ <link rel="stylesheet" href="css/styles.css" />
+ <style>
+  .product-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 2rem;
+   padding: 2rem;
+  }
+  .flip-card {
+   background-color: transparent;
+   width: 250px;
+   height: 300px;
+   perspective: 1000px;
+  }
+  .flip-card-inner {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   text-align: center;
+   transition: transform 0.8s;
+   transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner {
+   transform: rotateY(180deg);
+  }
+  .flip-card-front, .flip-card-back {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   overflow: hidden;
+  }
+  .flip-card-front img, .flip-card-back img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+  }
+  .flip-card-back {
+   background-color: #fff;
+   color: #333;
+   transform: rotateY(180deg);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 1rem;
+  }
+  .flip-card-back h3, .flip-card-back p {
+   margin: 0.5rem 0;
+  }
+ </style>
 </head>
 <body>
-  <!-- Shared Navbar -->
-  <header>
-    <nav>
-      <ul class="navbar">
-       
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Jinwoo's Treehouse</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+  <!--Collapse card animation -->
+  <!-- <div class="flip-card mb-3"> -->
+<!--   
+    <div class="flip-card-inner">
+      <!--Collapse button-->
+      <!-- <div class="flip-card-front position-relative"> -->
+        <!-- <img src="./images/proTiger.jpeg" class="img-fluid" alt="Protector Tiger">
+        <button class="btn btn-sm btn-light position-absolute bottom-0 start-50 translate-middle-x mb-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-info-0"
+        aria-expanded="false"
+        aria-controls="collapse-info-0"
+        onclick="event.stopPropagation();">Overview Info
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Treehouse</a></li>
-        </ul>
+        <div class="flip-card-back">
+          <img src="./images/disTiger.jpeg" class="img-fluid"alt="Dissonant Tiger">
+          
+        </div>
       </div>
     </div>
-  </nav>
-  <main>
-    <h1 class="page-title">Protector Tier PETS</h1>
-    <div id="market" class="product-container"></div>
-  </main>
+    <div class="collapse" id="collapse-info-0">
+      <div class="card card-body">
+        <h5>Protector Tiger</h5>
+        <p><strong>Price:</strong> $7500 - $35,000</p>
+        <p>Protector Tier: A powerful and reliable even as a Tier 1 PET</p>
+        <p>Dissonant Tier: A ultra powerful weapon of celestial origin, after reaching full dissonance and symbiosis, the Collector and PET are nearly unstoppable</p>
+      </div>
+    </div>  -->
 
-  <footer>
-    <p>&copy; 2025 Your Pet Store. All rights reserved.</p>
-  </footer>
+<div id="market"></div>  
+<!-- </div> -->
 
-  <script>
-    const shop = [
-      {
-        protector: {
-          title: 'Protector Tiger',
-          image: './images/proTiger.jpeg',
-          price: '$7,500 - $15,000',
-          description: 'Protector tier: A powerful and regal guardian.'
-        },
-        dissonant: {
-          image: './images/disTiger.jpeg',
-          description: 'Dissonant tier: Agile predator for chaos-tier engagement.'
-        }
-      },
-      {
-        protector: {
-          title: 'Golden Eagle',
-          image: './images/proEagle.jpeg',
-          price: '$5,000 - $9,000',
-          description: 'Protector tier: Sharp-eyed aerial scout.'
-        },
-        dissonant: {
-          image: './images/disEagle.jpeg',
-          description: 'Dissonant tier: Dive-strike and disruption expert.'
-        }
-      },
-      {
-        protector: {
-          title: 'Protector Arabian',
-          image: './images/proArabian.jpeg',
-          price: '$6,000 - $10,500',
-          description: 'Protector tier: A most prized and cherished collection amongst Collectors.'
-        },
-        dissonant: {
-          image: './images/disArabian.jpeg',
-          description: 'Dissonant tier:A holy terror!'
-        }
-      },
-
-      {
-        protector: {
-          title: 'Protector Panda',
-          image: './images/proPanda.jpeg',
-          price: '$6,000 - $10,500',
-          description: 'Protector tier: Not known for much except their beloved reputation with children.'
-        },
-        dissonant: {
-          image: './images/disPanda.jpeg',
-          description: 'Dissonant tier: Somehthing has changed this animal!!'
-        }
-      },
-
-      {
-        protector: {
-          title: 'Protector Chimp',
-          image: './images/proChimp.jpeg',
-          price: '$6,000 - $10,500',
-          description: 'Protector tier: One of two available PETS that cannot be purchased beyond their weaning stage, they are too unpredictable.'
-        },
-        dissonant: {
-          image: './images/disChimp.jpeg',
-          description: 'Dissonant tier: Has anyone wittnessed such rage and desruction!'
-        }
-      },
-
-      {
-        protector: {
-          title: 'Protector Lion',
-          image: './images/proLion.jpeg',
-          price: '$6,000 - $10,500',
-          description: 'Protector tier: There are few others, who could wear his mane.'
-        },
-        dissonant: {
-          image: './images/disLion.jpeg',
-          description: 'Dissonant tier: Who can stand against this mighty warrior king!' 
-        }
-      }
-    ];
-
-    const market = document.getElementById('market');
-    shop.forEach(pet => {
-      const card = document.createElement('div');
-      card.className = 'flip-card';
-
-      card.innerHTML = `
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="${pet.protector.image}" alt="${pet.protector.title}" />
-          </div>
-          <div class="flip-card-back">
-            <h3>${pet.protector.title}</h3>
-            <img src="${pet.dissonant.image}" alt="Dissonant form" />
-            <p><strong>Price:</strong> ${pet.protector.price}</p>
-            <p><em>${pet.protector.description}</em></p>
-            <p><em>${pet.dissonant.description}</em></p>
-          </div>
-        </div>
-      `;
-
-      card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-      });
-
-      market.appendChild(card);
-    });
-  </script>
+ <!-- Shared Navbar -->
+ <header>
+  <nav>
+   <ul class="navbar">
+ <!-- NAVBAR -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+   <a class="navbar-brand" href="#">Jinwoo's Treehouse</a>
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+     <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+     <li class="nav-item"><a class="nav-link" href="#">Treehouse</a></li>
+    </ul>
+   </div>
+  </div>
+ </nav>
+ <main>
+  <h1 class="page-title">Protector Tier PETS</h1>
+  <div id="market" class="product-container"></div>
+ </main>
+ <footer>
+  <p>&copy; 2025 Your Pet Store. All rights reserved.</p>
+ </footer>
+ <script src="./index.js"></script>
 </body>
 </html>
