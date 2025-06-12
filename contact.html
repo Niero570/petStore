@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -62,9 +62,9 @@
     }
   </style>
 </head>
-<body>
+</head><body>
   <nav class="navbar">
-    <div class="logo">Jinwoo’s Treehouse</div>
+    <div class="logo">Jinwoo's Treehouse</div>
     <div>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -74,6 +74,39 @@
   </nav>
 
   <main class="scroll-container">
+    <div class="scroll">
+      <h1>Contact Jinwoo’s Treehouse</h1>
+      <p>
+        Have questions about PETS or magical pacts? Fill out the form below, and we’ll get back to you as soon as possible!
+      </p>
+      <form action="submit_contact.php" method="POST">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name (Partner of PETS)" required />
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" placeholder="example@treehouse.com" required />
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" placeholder="Write your message here..." rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Follow us on:</p>
+    <div class="social-links">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <p>&copy; 2025 Jinwoo's Treehouse. All rights reserved.</p>
+  </footer>
+</body>
+
+  <!--<main class="scroll-container">
     <div class="scroll">
       <h1>The Legacy of Jinwoo’s Treehouse</h1>
       <p>
