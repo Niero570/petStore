@@ -1,175 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap" rel="stylesheet">
- <title>PETS Collection</title>
- <style>
-  .product-container {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   gap: 2rem;
-   padding: 2rem;
-  }
-  .flip-card {
-   background-color: transparent;
-   width: 250px;
-   height: 300px;
-   perspective: 1000px;
-   cursor: pointer;
-   margin-bottom: 1rem;
-  }
-  .flip-card-inner {
-   position: relative;
-   width: 100%;
-   height: 100%;
-   text-align: center;
-   transition: transform 0.6s;
-   transform-style: preserve-3d;
-  }
-  .flip-card:hover .flip-card-inner {
-   transform: rotateY(180deg);
-  }
-  .flip-card-front, .flip-card-back {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   border: 1px solid #ccc;
-   border-radius: 8px;
-   overflow: hidden;
-   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  .flip-card-front img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-  }
-  .flip-card-back {
-   background-color: #fff;
-   color: #333;
-   transform: rotateY(180deg);
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   padding: 1rem;
-  }
-  .flip-card-back h3 {
-   margin-bottom: 1rem;
-   color: #333;
-  }
-  .flip-card-back p {
-   margin: 0.3rem 0;
-   font-size: 0.9rem;
-  }
-  .page-title {
-   text-align: center;
-   margin-top: 80px;
-   margin-bottom: 30px;
-   font-family: 'Just Another Hand', cursive;
-   font-size: 3rem;
-  }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETS Collection - Jinwoo's Treehouse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #ff7675;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+        }
+        
+        body {
+            padding-top: 70px;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: var(--dark-color) !important;
+        }
+        
+        .navbar-brand {
+            font-family: 'Just Another Hand', cursive;
+            font-size: 1.8rem;
+            color: var(--light-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-family: 'Just Another Hand', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 350px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .flip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .flip-card-front img, .flip-card-back img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        
+        .flip-card-front .card-footer, .flip-card-back .card-footer {
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            padding: 0.5rem;
+        }
+        
+        .flip-card-front .pet-name, .flip-card-back .pet-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin: 0;
+        }
+        
+        .flip-card-back {
+            background-color: white;
+            color: var(--dark-color);
+            transform: rotateY(180deg);
+        }
+        
+        .info-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .info-btn:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .pet-info {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 0.5rem;
+            padding: 1rem;
+        }
+        
+        .pet-info h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .pet-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-tag {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .pet-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        footer {
+            background-color: var(--dark-color) !important;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-icons {
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            margin: 1rem auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .flip-card {
+                height: 320px;
+            }
+        }
+    </style>
 </head>
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-   <div class="container-fluid">
-     <a class="navbar-brand" href="index.html">Jinwoo's Treehouse</a>
-     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
-     </button>
-     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-       <ul class="navbar-nav">
-         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item"><a class="nav-link" href="contact2.html">Contact</a></li>
-         <li class="nav-item"><a class="nav-link" href="treehouse.html">Treehouse</a></li>
-       </ul>
-     </div>
-   </div>
- </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Jinwoo's Treehouse</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact2.html">PETS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="treehouse.html">Treehouse</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
- <main>
-  <h1 class="page-title">Protector Tier PETS</h1>
-  <div class="product-container">
-   <!-- Protector Tiger (shows Dissonant Tiger info when flipped) -->
-   <div class="flip-card">
-    <div class="flip-card-inner">
-     <div class="flip-card-front">
-      <img src="./images/proTiger.jpeg" alt="Protector Tiger">
-     </div>
-     <div class="flip-card-back">
-      <h3>Dissonant Tiger</h3>
-      <p><strong>Price:</strong> $50,000+</p>
-      <p>Evolved from Protector Tiger</p>
-      <p>Ultra powerful celestial weapon</p>
-      <p>Full symbiosis makes it unstoppable</p>
-     </div>
-    </div>
-   </div>
+    <main class="container-fluid px-0">
+        <h1 class="page-title">Protector Tier PETS</h1>
+        <div class="product-container">
+            <!-- Protector Tiger Card -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="pet-badge">Tier 1</span>
+                        <img src="./images/proTiger.jpeg" alt="Protector Tiger">
+                        <div class="card-footer">
+                            <p class="pet-name">Protector Tiger</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="pet-badge">Evolved</span>
+                        <img src="./images/disTiger.jpeg" alt="Dissonant Tiger">
+                        <div class="card-footer">
+                            <p class="pet-name">Dissonant Tiger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pet-info collapse" id="collapse-proTiger">
+                    <h5>Protector Tiger</h5>
+                    <p><span class="price-tag">Price:</span> $7,500 - $35,000</p>
+                    <p>Powerful and reliable Tier 1 PET</p>
+                    <p>Excellent for all skill levels</p>
+                    <p>Base form before evolution</p>
+                    <button class="info-btn" data-bs-toggle="collapse" data-bs-target="#collapse-proTiger">Close Info</button>
+                </div>
+                <div class="pet-info collapse" id="collapse-disTiger">
+                    <h5>Dissonant Tiger</h5>
+                    <p><span class="price-tag">Price:</span> $50,000+</p>
+                    <p>Evolved from Protector Tiger</p>
+                    <p>Ultra powerful celestial weapon</p>
+                    <p>Full symbiosis makes it unstoppable</p>
+                    <button class="info-btn" data-bs-toggle="collapse" data-bs-target="#collapse-disTiger">Close Info</button>
+                </div>
+                <button class="info-btn w-100 mt-2" data-bs-toggle="collapse" data-bs-target=".pet-info">Toggle Info</button>
+            </div>
+            
+            <!-- Add more PET cards following the same structure -->
+            <!-- Example additional card -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <span class="pet-badge">Tier 2</span>
+                        <img src="./images/proPhoenix.jpeg" alt="Protector Phoenix">
+                        <div class="card-footer">
+                            <p class="pet-name">Protector Phoenix</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="pet-badge">Evolved</span>
+                        <img src="./images/disPhoenix.jpeg" alt="Dissonant Phoenix">
+                        <div class="card-footer">
+                            <p class="pet-name">Dissonant Phoenix</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pet-info collapse" id="collapse-proPhoenix">
+                    <h5>Protector Phoenix</h5>
+                    <p><span class="price-tag">Price:</span> $12,000 - $45,000</p>
+                    <p>Majestic fire-based PET</p>
+                    <p>Excellent aerial combat capabilities</p>
+                    <p>Base form with healing abilities</p>
+                    <button class="info-btn" data-bs-toggle="collapse" data-bs-target="#collapse-proPhoenix">Close Info</button>
+                </div>
+                <div class="pet-info collapse" id="collapse-disPhoenix">
+                    <h5>Dissonant Phoenix</h5>
+                    <p><span class="price-tag">Price:</span> $65,000+</p>
+                    <p>Evolved from Protector Phoenix</p>
+                    <p>Controls celestial flames</p>
+                    <p>Can resurrect from ashes</p>
+                    <button class="info-btn" data-bs-toggle="collapse" data-bs-target="#collapse-disPhoenix">Close Info</button>
+                </div>
+                <button class="info-btn w-100 mt-2" data-bs-toggle="collapse" data-bs-target=".pet-info">Toggle Info</button>
+            </div>
+        </div>
+    </main>
 
-   <!-- Dissonant Tiger (shows Protector Tiger info when flipped) -->
-   <div class="flip-card">
-    <div class="flip-card-inner">
-     <div class="flip-card-front">
-      <img src="./images/disTiger.jpeg" alt="Dissonant Tiger">
-     </div>
-     <div class="flip-card-back">
-      <h3>Protector Tiger</h3>
-      <p><strong>Price:</strong> $7,500 - $35,000</p>
-      <p>Powerful and reliable Tier 1 PET</p>
-      <p>Excellent for all skill levels</p>
-      <p>Base form before evolution</p>
-     </div>
-    </div>
-   </div>
+    <footer class="text-center py-4">
+        <div class="container">
+            <img src="./images/busheedoCode.jpeg" alt="Bushido Code Logo" class="footer-logo">
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="mb-0">&copy; 2025 Jinwoo's Treehouse. All rights reserved.</p>
+        </div>
+    </footer>
 
-   <!-- Protector Wolf (would show Dissonant Wolf info when flipped) -->
-   <div class="flip-card">
-    <div class="flip-card-inner">
-     <div class="flip-card-front">
-      <img src="./images/proWolf.jpeg" alt="Protector Wolf">
-     </div>
-     <div class="flip-card-back">
-      <h3>Dissonant Wolf</h3>
-      <p><strong>Price:</strong> $45,000+</p>
-      <p>Evolved from Protector Wolf</p>
-      <p>Moon-powered celestial hunter</p>
-      <p>Creates phantom pack members</p>
-     </div>
-    </div>
-   </div>
-
-   <!-- Dissonant Wolf (would show Protector Wolf info when flipped) -->
-   <div class="flip-card">
-    <div class="flip-card-inner">
-     <div class="flip-card-front">
-      <img src="./images/disWolf.jpeg" alt="Dissonant Wolf">
-     </div>
-     <div class="flip-card-back">
-      <h3>Protector Wolf</h3>
-      <p><strong>Price:</strong> $6,000 - $30,000</p>
-      <p>Fast and agile Tier 1 PET</p>
-      <p>Excellent for tracking</p>
-      <p>Strong pack mentality</p>
-     </div>
-    </div>
-   </div>
-  </div>
- </main>
-
- <footer class="bg-dark text-white text-center py-3">
-  <p>&copy; 2025 Your Pet Store. All rights reserved.</p>
- </footer>
-
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function flipCard(card) {
+            // Close all info panels when flipping card
+            const infoPanels = card.querySelectorAll('.pet-info');
+            infoPanels.forEach(panel => {
+                if (panel.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(panel, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                }
+            });
+            
+            card.classList.toggle('flipped');
+        }
+        
+        // Prevent card flip when clicking on info button
+        document.querySelectorAll('.info-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
 </body>
 </html>
