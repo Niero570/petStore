@@ -72,7 +72,7 @@
             padding-bottom: 3rem;
             max-width: 1400px;
             margin: 0 auto;
-            color: #c80707be;
+            color: #c8ab7343;
             position: relative;
         }
         
@@ -163,7 +163,7 @@
         }
         
         .treehouse .flip-card-back {
-            background-color: rgb(196, 16, 16);
+            background-color: rgba(160, 172, 173, 0.841);
             color: var(--dark-color);
             transform: rotateY(180deg);
         }
@@ -187,25 +187,34 @@
         }
         
         .treehouse .pet-info {
-            background-color: rgb(143, 29, 80);
+            background-color: rgb(232, 232, 232);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-top: 0.5rem;
             padding: 1rem;
             width: calc(100% - 2rem);
             top: calc(100% + 10px);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 100; 
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+        
         
         .treehouse .pet-info h5 {
             color: var(--primary-color);
             font-weight: 600;
             position: relative;
-            z-index: 10;
+            z-index: 100;
             margin-top: -20px;
         }
         
         .treehouse .pet-info p {
             margin-bottom: 0.5rem;
+            color: #000000;
 
         }
         
@@ -290,15 +299,15 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contact2.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="treehouse.html">Treehouse</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="treehouse.html">Treehouse</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <main class="container-fluid px-0">
-        <h1 class="page-title">Protector Tier PETS</h1>
+        <h1 class="page-title" color="">Protector Tier PETS</h1>
         <div class="product-container">
 
 

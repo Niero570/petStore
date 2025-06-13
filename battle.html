@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET Battle Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111;
+            font-family: 'IM Fell English SC', serif;
+            color: #f0e6d2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .battle-arena {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 900px;
+            margin: 30px 0;
+        }
+
+        .pet-card {
+            width: 300px;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+        }
+
+        .pet-info {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .pet-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .pet-stats {
+            background-color: rgba(30, 20, 19, 0.85);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(2px);
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .battle-btn {
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-family: 'IM Fell English SC', serif;
+            transition: all 0.3s ease;
+        }
+
+        .battle-btn:hover {
+            background-color: #ff7675;
+            transform: scale(1.05);
+        }
+
+        .battle-log {
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .battle-log p {
+            margin: 5px 0;
+        }
+
+        .health-bar {
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .health-fill {
+            height: 100%;
+            background-color: #ff7675;
+            width: 100%;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dissonant PET Battle</h1>
+    
+    <div class="battle-arena">
+        <!-- Dissonant Tiger Card -->
+        <div class="pet-card" style="background-image: url('images/disTiger.jpeg')">
+            <div class="pet-info">
+                <div class="pet-name">Dissonant Tiger</div>
+                <div class="pet-stats">
+                    <div class="stat"><span>HP:</span> <span id="tiger-hp">120</span></div>
+                    <div class="health-bar">
+                        <div class="health-fill" id="tiger-health"></div>
+                    </div>
+                    <div class="stat"><span>Attack:</span> <span>40</span></div>
+                    <div class="stat"><span>Special:</span> <span>Celestial Claw (60)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; font-size: 2rem; padding: 0 20px;">
+            VS
+        </div>
+
+        <!-- Dissonant Arabian Card -->
+        <div class="pet-card" style="background-image: url('images/disArabian.jpeg')">
+            <div class="pet-info">
+                <div class="pet-name">Dissonant Arabian</div>
+                <div class="pet-stats">
+                    <div class="stat"><span>HP:</span> <span id="arabian-hp">100</span></div>
+                    <div class="health-bar">
+                        <div class="health-fill" id="arabian-health"></div>
+                    </div>
+                    <div class="stat"><span>Attack:</span> <span>35</span></div>
+                    <div class="stat"><span>Special:</span> <span>Winged Strike (70)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="battle-btn" class="battle-btn">Start Battle!</button>
+    
+    <div id="battle-log" class="battle-log">
+        <p>Click "Start Battle!" to begin...</p>
+    </div>
+
+    <script>
+        // Card stats
+        const cards = {
+            dissonantTiger: {
+                name: "Dissonant Tiger",
+                maxHp: 120,
+                hp: 120,
+                attack: 40,
+                special: "Celestial Claw",
+                specialDamage: 60
+            },
+            dissonantArabian: {
+                name: "Dissonant Arabian",
+                maxHp: 100,
+                hp: 100,
+                attack: 35,
+                special: "Winged Strike",
+                specialDamage: 70
+            }
+        };
+
+        // DOM elements
+        const battleBtn = document.getElementById('battle-btn');
+        const battleLog = document.getElementById('battle-log');
+        const tigerHpDisplay = document.getElementById('tiger-hp');
+        const arabianHpDisplay = document.getElementById('arabian-hp');
+        const tigerHealthBar = document.getElementById('tiger-health');
+        const arabianHealthBar = document.getElementById('arabian-health');
+
+        // Initialize health bars
+        updateHealthBars();
+
+        // Battle function
+        function battle() {
+            // Reset battle
+            battleLog.innerHTML = '<p>⚔️ Battle started! ⚔️</p>';
+            resetBattle();
+            
+            // Disable button during battle
+            battleBtn.disabled = true;
+            battleBtn.textContent = "Battle in progress...";
+            
+            // Battle loop
+            let turn = 0;
+            const maxTurns = 20;
+            
+            const battleInterval = setInterval(() => {
+                turn++;
+                battleLog.innerHTML += `<p>--- Turn ${turn} ---</p>`;
+                
+                // Tiger attacks
+                const tigerAttack = Math.random() < 0.3 ? 
+                    useSpecial(cards.dissonantTiger, cards.dissonantArabian) : 
+                    normalAttack(cards.dissonantTiger, cards.dissonantArabian);
+                battleLog.innerHTML += tigerAttack;
+                updateHealthBars();
+                
+                // Check if Arabian is defeated
+                if(cards.dissonantArabian.hp <= 0) {
+                    endBattle(cards.dissonantTiger, cards.dissonantArabian);
+                    clearInterval(battleInterval);
+                    return;
+                }
+                
+                // Arabian attacks
+                const arabianAttack = Math.random() < 0.3 ? 
+                    useSpecial(cards.dissonantArabian, cards.dissonantTiger) : 
+                    normalAttack(cards.dissonantArabian, cards.dissonantTiger);
+                battleLog.innerHTML += arabianAttack;
+                updateHealthBars();
+                
+                // Check if Tiger is defeated
+                if(cards.dissonantTiger.hp <= 0) {
+                    endBattle(cards.dissonantArabian, cards.dissonantTiger);
+                    clearInterval(battleInterval);
+                    return;
+                }
+                
+                // Check max turns
+                if(turn >= maxTurns) {
+                    endBattle(null, null); // Draw
+                    clearInterval(battleInterval);
+                }
+                
+                // Auto-scroll log
+                battleLog.scrollTop = battleLog.scrollHeight;
+            }, 1500); // 1.5 seconds per turn
+        }
+
+        // Helper functions
+        function normalAttack(attacker, defender) {
+            const damage = Math.floor(attacker.attack * (0.8 + Math.random() * 0.4));
+            defender.hp = Math.max(0, defender.hp - damage);
+            return `<p>${attacker.name} attacks for ${damage} damage!</p>`;
+        }
+
+        function useSpecial(attacker, defender) {
+            const damage = Math.floor(attacker.specialDamage * (0.8 + Math.random() * 0.4));
+            defender.hp = Math.max(0, defender.hp - damage);
+            return `<p>✨ ${attacker.name} uses <strong>${attacker.special}</strong> for ${damage} damage!</p>`;
+        }
+
+        function updateHealthBars() {
+            // Update HP text
+            tigerHpDisplay.textContent = cards.dissonantTiger.hp;
+            arabianHpDisplay.textContent = cards.dissonantArabian.hp;
+            
+            // Update health bars
+            tigerHealthBar.style.width = `${(cards.dissonantTiger.hp / cards.dissonantTiger.maxHp) * 100}%`;
+            arabianHealthBar.style.width = `${(cards.dissonantArabian.hp / cards.dissonantArabian.maxHp) * 100}%`;
+            
+            // Change color based on health
+            tigerHealthBar.style.backgroundColor = getHealthColor(cards.dissonantTiger.hp, cards.dissonantTiger.maxHp);
+            arabianHealthBar.style.backgroundColor = getHealthColor(cards.dissonantArabian.hp, cards.dissonantArabian.maxHp);
+        }
+
+        function getHealthColor(currentHp, maxHp) {
+            const percent = (currentHp / maxHp) * 100;
+            if(percent > 60) return "#4CAF50"; // Green
+            if(percent > 30) return "#FFC107"; // Yellow
+            return "#F44336"; // Red
+        }
+
+        function resetBattle() {
+            cards.dissonantTiger.hp = cards.dissonantTiger.maxHp;
+            cards.dissonantArabian.hp = cards.dissonantArabian.maxHp;
+            updateHealthBars();
+        }
+
+        function endBattle(winner, loser) {
+            if(winner && loser) {
+                battleLog.innerHTML += `<p>🎉 <strong>${winner.name}</strong> defeats ${loser.name}!</p>`;
+            } else {
+                battleLog.innerHTML += `<p>🏳️ The battle ended in a draw!</p>`;
+            }
+            
+            battleBtn.disabled = false;
+            battleBtn.textContent = "Battle Again!";
+            battleLog.scrollTop = battleLog.scrollHeight;
+        }
+
+        // Event listener
+        battleBtn.addEventListener('click', battle);
+    </script>
+</body>
+</html>
